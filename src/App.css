@@ -1,0 +1,64 @@
+.button-pet {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  gap: 0.2rem;
+  border-bottom-right-radius: 10px;
+  background-color: #2e2c30;
+  border: none;
+
+  span {
+    color: #9282fa;
+    font-weight: 700;
+  }
+}
+
+.container {
+  display: flex;
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 60%;
+  height: 80%;
+
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.agenda-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.agenda-info h1 {
+  margin: 0;
+  color: #ffffff;
+}
+
+.agenda-info p {
+  margin-top: 8px;
+  color: #98959d;
+}
+
+.date-selector {
+  background-color: transparent;
+  border: 1px solid #3e3c41;
+  padding: 0.7rem;
+  border-radius: 0.5rem;
+  color: #98959d;
+
+  background-image: url("./assets/calendar.svg");
+  background-repeat: no-repeat;
+  background-position: 12px center;
+  background-size: 20px;
+
+  padding-left: 45px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  cursor: pointer;
+}
