@@ -46,7 +46,7 @@
 .date-selector {
   background-color: transparent;
   border: 1px solid #3e3c41;
-  padding: 0.7rem;
+  padding: 1rem;
   border-radius: 0.5rem;
   color: #98959d;
 
@@ -61,4 +61,12 @@
 input[type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0;
   cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: flex-start;
+  }
 }
