@@ -1,11 +1,12 @@
-import { Home } from "./page/Home";
-import { ButtonPet } from "./components/ButtonPet";
+import { BrowserRouter } from "react-router-dom";
+import AppRoutes from "./routes/routes";
 
-export default function App() {
+function App() {
   return (
-    <div>
-      <ButtonPet />
-      <Home />
-    </div>
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
   );
 }
+
+export default App;
