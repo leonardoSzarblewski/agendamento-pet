@@ -1,6 +1,6 @@
 import iconPet from "../assets/pet.svg";
 
-import "./buttonPet.Modules.css";
+import "./buttonPet.modules.css";
 
 export function ButtonPet() {
   return (
