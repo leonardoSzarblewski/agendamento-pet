@@ -49,6 +49,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
+.container-main-daily-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 @media (max-width: 900px) {
   .container {
     position: absolute;

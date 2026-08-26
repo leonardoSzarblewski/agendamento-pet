@@ -1,0 +1,101 @@
+.container-daily-schedule {
+  background-color: #23242c;
+  padding: 1.75rem;
+  border-radius: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header-daily-schedule {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.header-daily-schedule span {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.header-daily-schedule p {
+  color: #98959d;
+  font-weight: 700;
+}
+
+.morning {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.main-daily-schedule {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  padding: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.main-daily-schedule:last-child {
+  border-bottom: none;
+}
+
+.time {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.time p {
+  color: #ffffff;
+  font-weight: 700;
+  margin: 0;
+}
+
+.time span {
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.time span strong {
+  color: #666666;
+  font-weight: 500;
+}
+
+.service {
+  color: #ffffff;
+  font-weight: 400;
+  margin: 0;
+}
+
+.button-daily-schedule {
+  background-color: transparent;
+  border: none;
+  color: #666666;
+  cursor: pointer;
+  align-self: flex-end;
+  padding: 0;
+  font-size: 0.875rem;
+}
+
+@media (min-width: 768px) {
+  .main-daily-schedule {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .service {
+    color: #98959d;
+    font-weight: 700;
+  }
+
+  .button-daily-schedule {
+    align-self: center;
+  }
+}

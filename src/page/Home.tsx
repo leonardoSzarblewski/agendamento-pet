@@ -1,6 +1,10 @@
 import { DailySchedule } from "../components/DailySchedule";
 import "./homeModules.css";
 
+import sun from "../assets/sun.svg";
+import cloud from "../assets/cloud.svg";
+import moon from "../assets/moon.svg";
+
 export function Home() {
   return (
     <div className="container">
@@ -15,8 +19,11 @@ export function Home() {
           <input type="date" className="date-selector" />
         </div>
       </div>
-
-      <DailySchedule />
+      <div className="container-main-daily-schedule">
+        <DailySchedule icon={sun} period={"Manhã"} time={"09h-12h"} />
+        <DailySchedule icon={cloud} period={"Tarde"} time={"13h-18h"} />
+        <DailySchedule icon={moon} period={"Noite"} time={"19h-21h"} />
+      </div>
     </div>
   );
 }
