@@ -11,6 +11,7 @@ import phone from "../assets/phone.svg";
 import calendar from "../assets/calendar.svg";
 
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type FormData = {
   owner: string;
@@ -38,6 +39,8 @@ const schema = yup.object({
 });
 
 export function SchedulingForm() {
+  const navigate = useNavigate();
+
   const {
     control,
     handleSubmit,
@@ -56,6 +59,8 @@ export function SchedulingForm() {
 
   function onSubmit(data: FormData) {
     console.log(data);
+
+    navigate("/");
   }
 
   return (
