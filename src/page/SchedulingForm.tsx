@@ -51,7 +51,7 @@ export function SchedulingForm() {
       petName: "",
       phone: "",
       description: "",
-      date: "",
+      date: `${getToday()}`,
       time: "",
     },
     resolver: yupResolver(schema),
@@ -59,8 +59,13 @@ export function SchedulingForm() {
 
   function onSubmit(data: FormData) {
     console.log(data);
+    alert("Agendamento realizado com sucesso!");
 
     navigate("/");
+  }
+
+  function getToday() {
+    return new Date().toLocaleDateString("sv-SE");
   }
 
   return (

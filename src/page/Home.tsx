@@ -16,6 +16,10 @@ export function Home() {
     navigate("/agendamento");
   }
 
+  function getToday() {
+    return new Date().toLocaleDateString("sv-SE");
+  }
+
   return (
     <div>
       <ButtonPet />
@@ -29,7 +33,11 @@ export function Home() {
             </p>
           </div>
           <div>
-            <input type="date" className="date-selector" />
+            <input
+              type="date"
+              className="date-selector"
+              defaultValue={getToday()}
+            />
           </div>
         </div>
         <div className="container-main-daily-schedule">
