@@ -83,6 +83,12 @@
   font-size: 0.875rem;
 }
 
+.message-scheduling {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media (min-width: 768px) {
   .main-daily-schedule {
     flex-direction: row;
