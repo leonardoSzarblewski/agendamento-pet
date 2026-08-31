@@ -58,7 +58,8 @@ export function SchedulingForm() {
   });
 
   function onSubmit(data: FormData) {
-    console.log(data);
+    localStorage.setItem("agendamento", JSON.stringify(data));
+
     alert("Agendamento realizado com sucesso!");
 
     navigate("/");
