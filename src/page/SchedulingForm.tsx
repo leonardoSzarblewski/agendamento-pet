@@ -39,6 +39,17 @@ const schema = yup.object({
   time: yup.string().required("Horário é obrigatório"),
 });
 
+const schedules = [
+  "08:00",
+  "10:00",
+  "12:00",
+  "14:00",
+  "16:00",
+  "18:00",
+  "20:00",
+  "22:00",
+];
+
 export function SchedulingForm() {
   const navigate = useNavigate();
 
@@ -178,7 +189,7 @@ export function SchedulingForm() {
                         className={`input-with-icon ${errors.date ? "input-error" : ""}`}
                       >
                         <img src={calendar} alt="ícone de calendario" />
-                        <input type="date" {...field} />
+                        <input type="date" {...field} min={getToday()} />
                       </div>
                     </div>
                   )}
@@ -205,19 +216,11 @@ export function SchedulingForm() {
                             Selecione
                           </option>
 
-                          <option value="09:00">09:00</option>
-                          <option value="10:00">10:00</option>
-                          <option value="11:00">11:00</option>
-                          <option value="12:00">12:00</option>
-                          <option value="13:00">13:00</option>
-                          <option value="14:00">14:00</option>
-                          <option value="15:00">15:00</option>
-                          <option value="16:00">16:00</option>
-                          <option value="17:00">17:00</option>
-                          <option value="18:00">18:00</option>
-                          <option value="19:00">19:00</option>
-                          <option value="20:00">20:00</option>
-                          <option value="21:00">21:00</option>
+                          {schedules.map((hours) => (
+                            <option key={hours} value={hours}>
+                              {hours}
+                            </option>
+                          ))}
                         </select>
                       </div>
                     </div>

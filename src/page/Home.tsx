@@ -37,6 +37,7 @@ export function Home() {
               type="date"
               className="date-selector"
               defaultValue={getToday()}
+              min={getToday()}
             />
           </div>
         </div>
