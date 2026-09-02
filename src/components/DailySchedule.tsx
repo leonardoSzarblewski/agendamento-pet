@@ -10,7 +10,8 @@ type Props = {
   periodKey: PeriodKey;
 };
 
-type Scheduling = {
+export type Scheduling = {
+  id: string;
   time: string;
   owner: string;
   petName: string;
@@ -18,19 +19,19 @@ type Scheduling = {
 };
 
 export function DailySchedule({ icon, period, time, periodKey }: Props) {
-  const [data, setDataForm] = useState<Scheduling | null>(null);
+  const [data, setDataForm] = useState<Scheduling[]>([]);
 
   useEffect(() => {
     try {
-      const dataSave: Scheduling | null = JSON.parse(
-        localStorage.getItem("agendamento") ?? "null",
+      const dataSave: Scheduling[] = JSON.parse(
+        localStorage.getItem("agendamento") ?? "[]",
       );
 
-      if (dataSave && getPeriodFromTime(dataSave.time) === periodKey) {
-        setDataForm(dataSave);
-      } else {
-        setDataForm(null);
-      }
+      const filtered = dataSave.filter(
+        (item) => getPeriodFromTime(item.time) === periodKey,
+      );
+
+      setDataForm(filtered);
     } catch (error) {
       console.log(error);
 
@@ -38,13 +39,21 @@ export function DailySchedule({ icon, period, time, periodKey }: Props) {
         return alert(error.response?.data.message);
       }
 
-      setDataForm(null);
+      setDataForm([]);
     }
   }, []);
 
-  function remove() {
-    localStorage.removeItem("agendamento");
-    setDataForm(null);
+  function remove(id: string) {
+    const agendamentos: Scheduling[] = JSON.parse(
+      localStorage.getItem("agendamento") ?? "[]",
+    );
+
+    const updated = agendamentos.filter((item) => item.id !== id);
+
+    localStorage.setItem("agendamento", JSON.stringify(updated));
+
+    setDataForm(updated);
+
     alert("Agendamento removido com sucesso!");
   }
 
@@ -60,19 +69,24 @@ export function DailySchedule({ icon, period, time, periodKey }: Props) {
         </div>
       </div>
 
-      {data ? (
-        <div className="main-daily-schedule">
-          <div className="time">
-            <p>{data.time}</p>
-            <span>
-              {data.owner} / <strong>{data.petName}</strong>
-            </span>
+      {data.length > 0 ? (
+        data.map((item) => (
+          <div className="main-daily-schedule" key={item.id}>
+            <div className="time">
+              <p>{item.time}</p>
+              <span>
+                {item.owner} / <strong>{item.petName}</strong>
+              </span>
+            </div>
+            <p className="service">{item.description}</p>
+            <button
+              className="button-daily-schedule"
+              onClick={() => remove(item.id)}
+            >
+              Remover agendamento
+            </button>
           </div>
-          <p className="service">{data.description}</p>
-          <button className="button-daily-schedule" onClick={remove}>
-            Remover agendamento
-          </button>
-        </div>
+        ))
       ) : (
         <p className="message-scheduling">Nenhum agendamento salvo.</p>
       )}

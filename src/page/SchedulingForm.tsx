@@ -14,6 +14,8 @@ import clock from "../assets/clock.svg";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
+import { type Scheduling } from "../components/DailySchedule";
+
 type FormData = {
   owner: string;
   petName: string;
@@ -70,7 +72,18 @@ export function SchedulingForm() {
   });
 
   function onSubmit(data: FormData) {
-    localStorage.setItem("agendamento", JSON.stringify(data));
+    const appointments: Scheduling[] = JSON.parse(
+      localStorage.getItem("agendamento") ?? "[]",
+    );
+
+    const newAppointments: Scheduling = {
+      ...data,
+      id: crypto.randomUUID(),
+    };
+
+    appointments.push(newAppointments);
+
+    localStorage.setItem("agendamento", JSON.stringify(appointments));
 
     alert("Agendamento realizado com sucesso!");
 
