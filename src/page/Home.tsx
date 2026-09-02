@@ -42,9 +42,24 @@ export function Home() {
           </div>
         </div>
         <div className="container-main-daily-schedule">
-          <DailySchedule icon={sun} period={"Manhã"} time={"09h-12h"} />
-          <DailySchedule icon={cloud} period={"Tarde"} time={"13h-18h"} />
-          <DailySchedule icon={moon} period={"Noite"} time={"19h-21h"} />
+          <DailySchedule
+            icon={sun}
+            period={"Manhã"}
+            time={"08h-12h"}
+            periodKey="manha"
+          />
+          <DailySchedule
+            icon={cloud}
+            period={"Tarde"}
+            time={"14h-18h"}
+            periodKey="tarde"
+          />
+          <DailySchedule
+            icon={moon}
+            period={"Noite"}
+            time={"20h-22h"}
+            periodKey="noite"
+          />
         </div>
 
         <SchedulingButton onClick={navigateScheduling} />

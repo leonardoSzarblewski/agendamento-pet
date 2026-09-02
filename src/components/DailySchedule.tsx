@@ -1,11 +1,13 @@
 import { AxiosError } from "axios";
 import "./dailySchedule.modules.css";
 import { useEffect, useState } from "react";
+import { getPeriodFromTime, type PeriodKey } from "../utils/schedulePeriod";
 
 type Props = {
   icon: string;
   period: string;
   time: string | number;
+  periodKey: PeriodKey;
 };
 
 type Scheduling = {
@@ -15,15 +17,20 @@ type Scheduling = {
   description: string;
 };
 
-export function DailySchedule({ icon, period, time }: Props) {
+export function DailySchedule({ icon, period, time, periodKey }: Props) {
   const [data, setDataForm] = useState<Scheduling | null>(null);
 
   useEffect(() => {
     try {
-      const dataSave = JSON.parse(
+      const dataSave: Scheduling | null = JSON.parse(
         localStorage.getItem("agendamento") ?? "null",
       );
-      setDataForm(dataSave);
+
+      if (dataSave && getPeriodFromTime(dataSave.time) === periodKey) {
+        setDataForm(dataSave);
+      } else {
+        setDataForm(null);
+      }
     } catch (error) {
       console.log(error);
 
@@ -38,7 +45,6 @@ export function DailySchedule({ icon, period, time }: Props) {
   function remove() {
     localStorage.removeItem("agendamento");
     setDataForm(null);
-
     alert("Agendamento removido com sucesso!");
   }
 
@@ -49,7 +55,6 @@ export function DailySchedule({ icon, period, time }: Props) {
           <img src={icon} />
           <span>{period}</span>
         </div>
-
         <div>
           <p>{time}</p>
         </div>
@@ -63,9 +68,7 @@ export function DailySchedule({ icon, period, time }: Props) {
               {data.owner} / <strong>{data.petName}</strong>
             </span>
           </div>
-
           <p className="service">{data.description}</p>
-
           <button className="button-daily-schedule" onClick={remove}>
             Remover agendamento
           </button>
