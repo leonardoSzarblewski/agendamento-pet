@@ -1,4 +1,3 @@
-import { AxiosError } from "axios";
 import "./dailySchedule.modules.css";
 import { useEffect, useState } from "react";
 import { getPeriodFromTime, type PeriodKey } from "../utils/schedulePeriod";
@@ -33,32 +32,34 @@ export function DailySchedule({ icon, period, time, periodKey }: Props) {
 
       setDataForm(filtered);
     } catch (error) {
-      console.log(error);
-
-      if (error instanceof AxiosError) {
-        return alert(error.response?.data.message);
-      }
+      console.error(error);
 
       setDataForm([]);
     }
   }, []);
 
   function handleRemove(id: string) {
-    const agendamentos: Scheduling[] = JSON.parse(
-      localStorage.getItem("agendamento") ?? "[]",
-    );
+    try {
+      const agendamentos: Scheduling[] = JSON.parse(
+        localStorage.getItem("agendamento") ?? "[]",
+      );
 
-    const updated = agendamentos.filter((item) => item.id !== id);
+      const updated = agendamentos.filter((item) => item.id !== id);
 
-    localStorage.setItem("agendamento", JSON.stringify(updated));
+      localStorage.setItem("agendamento", JSON.stringify(updated));
 
-    const filtered = updated.filter(
-      (item) => getPeriodFromTime(item.time) === periodKey,
-    );
+      const filtered = updated.filter(
+        (item) => getPeriodFromTime(item.time) === periodKey,
+      );
 
-    setDataForm(filtered);
+      setDataForm(filtered);
 
-    alert("Agendamento removido com sucesso!");
+      alert("Agendamento removido com sucesso!");
+    } catch (error) {
+      console.error(error);
+
+      alert("Não foi possível remover o agendamento. Tente novamente.");
+    }
   }
 
   return (
