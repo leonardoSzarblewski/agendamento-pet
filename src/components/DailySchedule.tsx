@@ -43,7 +43,7 @@ export function DailySchedule({ icon, period, time, periodKey }: Props) {
     }
   }, []);
 
-  function remove(id: string) {
+  function handleRemove(id: string) {
     const agendamentos: Scheduling[] = JSON.parse(
       localStorage.getItem("agendamento") ?? "[]",
     );
@@ -52,7 +52,11 @@ export function DailySchedule({ icon, period, time, periodKey }: Props) {
 
     localStorage.setItem("agendamento", JSON.stringify(updated));
 
-    setDataForm(updated);
+    const filtered = updated.filter(
+      (item) => getPeriodFromTime(item.time) === periodKey,
+    );
+
+    setDataForm(filtered);
 
     alert("Agendamento removido com sucesso!");
   }
@@ -81,7 +85,7 @@ export function DailySchedule({ icon, period, time, periodKey }: Props) {
             <p className="service">{item.description}</p>
             <button
               className="button-daily-schedule"
-              onClick={() => remove(item.id)}
+              onClick={() => handleRemove(item.id)}
             >
               Remover agendamento
             </button>
