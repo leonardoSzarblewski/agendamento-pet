@@ -11,6 +11,7 @@ type Props = {
 
 export type Scheduling = {
   id: string;
+  date: string;
   time: string;
   owner: string;
   petName: string;

@@ -77,6 +77,19 @@ export function SchedulingForm() {
       localStorage.getItem("agendamento") ?? "[]",
     );
 
+    // Verifica se já existe agendamento no mesmo horário e data
+    const alreadyExists = appointments.some(
+      (appointment) =>
+        appointment.date === data.date && appointment.time === data.time,
+    );
+
+    if (alreadyExists) {
+      alert(
+        `Não é possível agendar! Já existe um agendamento às ${data.time} horas.`,
+      );
+      return;
+    }
+
     const newAppointments: Scheduling = {
       ...data,
       id: crypto.randomUUID(),
