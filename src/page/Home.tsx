@@ -62,7 +62,10 @@ export function Home() {
           />
         </div>
 
-        <SchedulingButton onClick={navigateScheduling} />
+        <SchedulingButton
+          onClick={navigateScheduling}
+          children="NOVO AGENDAMENTO"
+        />
       </div>
     </div>
   );

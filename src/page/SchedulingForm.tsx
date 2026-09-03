@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import { type Scheduling } from "../components/DailySchedule";
+import { SchedulingButton } from "../components/SchedulingButton";
 
 type FormData = {
   owner: string;
@@ -245,9 +246,7 @@ export function SchedulingForm() {
               </div>
             </div>
 
-            <button className="btn" type="submit">
-              AGENDAR
-            </button>
+            <SchedulingButton children="AGENDAR" />
           </form>
         </div>
       </div>
